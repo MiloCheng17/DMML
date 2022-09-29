@@ -84,8 +84,10 @@ def get_content(dois,titles):
         if r.status_code == 404:
             print("Doi %s cannot be found on sci-hub, title is %s"%(doi,til))
         else:
-            title = re.findall("(.*?)/",doi)
-            with open(f"{title[0]}.pdf",'wb')as f:
+            #title = re.findall("(.*?)/",doi)
+            #with open(f"{title[0]}.pdf",'wb')as f:
+            title = doi.replace("/","-")
+            with open(f"%s.pdf"%title,'wb')as f:
                 f.write(r.content)
                 time.sleep(2)
 
